@@ -11,7 +11,9 @@ android:
     - android-24
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
-
+licenses:
+    - 'android-sdk-license-.+'
+    
 # Handle git submodules yourself
 git:
   submodules: false
