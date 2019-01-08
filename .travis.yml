@@ -23,7 +23,7 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
-    - sys-img-armeabi-v7a-google_apis-25
+    - sys-img-x86-google_apis_playstore-28
 # Handle git submodules yourself
 git:
   submodules: false
@@ -34,12 +34,10 @@ before_install:
 
 before_script:
   # Create and start emulator
-  - echo no | android create avd --force -n test -t android-25 --abi google_apis/armeabi-v7a
+  - echo no | android create avd --force -n test -t android-28 --abi google_apis_playstore/x86
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
 script: 
-  - ./gradlew clean 
-  - travis_wait ./gradlew test 
-  - ./gradlew mbw::asProdRel mbw::asBtRel
+  - ./gradlew clean test mbw::asProdRel mbw::asBtRel
